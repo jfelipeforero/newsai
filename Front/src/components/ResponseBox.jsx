@@ -1,10 +1,19 @@
 import React from 'react';
+import TextareaAutosize from '../text_area_styles/TextAreaAutosize';
+
 
 const ResponseBox = ({ response }) => {
   return (
-    <div>
-      <textarea className='response-box' value={response} readOnly />
-    </div>
+    <TextareaAutosize
+      id="standard-multiline-flexible"
+      label=""
+      multiline
+      maxRows={10}
+      minRows={5}
+      variant="outlined"
+      value={response}
+      InputProps={{ readOnly: true }}
+    />
   );
 };
 
