@@ -2,6 +2,7 @@ import pathlib
 import textwrap
 
 import google.generativeai as genai
+from core.config import settings
 
 from IPython.display import display
 from IPython.display import Markdown
@@ -10,7 +11,7 @@ def to_markdown(text):
   text = text.replace('•', '  *')
   return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
 
-genai.configure(api_key="AIzaSyAXPMn-NH1PSj9zbyBT0rfUDQ9lkOah3z8") 
+genai.configure(api_key=settings.google_api_key)
 
 model = genai.GenerativeModel('gemini-pro')
 
