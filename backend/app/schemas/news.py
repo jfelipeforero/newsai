@@ -17,4 +17,6 @@ News body definition
 class NewsBody(NewsBase):  
     pass
 
-     
+class NewsVerifierResponse(): 
+    veridic: str
+    other_news: str
