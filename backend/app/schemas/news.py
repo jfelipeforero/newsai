@@ -5,18 +5,23 @@ from pydantic import BaseModel, Field
 """
 News schema definition
 """
-class NewsBase(BaseModel):   
+
+
+class NewsBase(BaseModel):
     publication_date: datetime = Field(default_factory=datetime.now)
-    title: str 
+    title: str
     content: str
+
 
 """
 News body definition
 """
-    
-class NewsBody(NewsBase):  
+
+
+class NewsBody(NewsBase):
     pass
 
-class NewsVerifierResponse(): 
+
+class NewsVerifierResponse:
     veridic: str
-    other_news: str
+    related_news: str

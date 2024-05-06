@@ -9,4 +9,6 @@ def test_verify_news(client: TestClient) -> None:
     response = client.post(
         "http://127.0.0.1:8000/news/validate", 
         json=data,
+    )
+    assert response is True
  
