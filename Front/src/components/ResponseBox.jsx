@@ -3,6 +3,8 @@ import TextareaAutosize from '../text_area_styles/TextAreaAutosize';
 
 
 const ResponseBox = ({ response }) => {
+  const formattedResponse = JSON.stringify(response, null, 2);
+
   return (
     <TextareaAutosize
       id="standard-multiline-flexible"
@@ -11,8 +13,9 @@ const ResponseBox = ({ response }) => {
       maxRows={10}
       minRows={5}
       variant="outlined"
-      value={response}
+      value={formattedResponse}
       InputProps={{ readOnly: true }}
+      style={{ width: '600px', maxHeight: '200px', overflowY: 'auto' }}
     />
   );
 };

@@ -29,6 +29,3 @@ def generate_response(title:str, content: str):
     response = to_markdown(response.text)
     
     return response 
-
-
-

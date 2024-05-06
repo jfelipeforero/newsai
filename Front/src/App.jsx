@@ -1,33 +1,21 @@
-// App.jsx
 import React, { useState } from 'react';
-import TextInput from './components/TextInput';
+import ContentInput from './components/ContentInput';
 import ResponseBox from './components/ResponseBox';
 import './App.css';
 import { sendTextToBackend } from './services/api';
 
-// const App = () => {
-//   const [response, setResponse] = useState('');
-
-//   const handleSubmit = async (text) => {
-//     try {
-//       // Envía el texto al backend y obtiene la respuesta
-//       const backendResponse = await sendTextToBackend(text);
-//       // Actualiza el estado con la respuesta del backend
-//       setResponse(backendResponse);
-//     } catch (error) {
-//       console.error('Error al enviar el texto al backend:', error);
-//     }
-//   };
-
 const App = () => {
   const [response, setResponse] = useState('');
 
-  const handleSubmit = async (text) => {
-    // Simulación de respuesta del backend 
-    const fakeBackendResponse = `la noticia es fake "${text}"`;
-    
-    // Actualiza el estado con la respuesta simulada del backend
-    setResponse(fakeBackendResponse);
+  const handleSubmit = async ({ title, content }) => { // Actualizado para recibir title y content
+    try {
+      // Envía el título y el contenido al backend y obtiene la respuesta
+      const backendResponse = await sendTextToBackend({ title, content }); // Enviar título y contenido al backend
+      // Actualiza el estado con la respuesta del backend
+      setResponse(backendResponse);
+    } catch (error) {
+      console.error('Error al enviar el título y el contenido al backend:', error);
+    }
   };
 
   return (
@@ -35,7 +23,7 @@ const App = () => {
       <div className='content'>
         <h1 className='title'>Newsai</h1>
         <h2 className='subtitle'>Are your news reliable? Find out here!</h2>
-        <TextInput onSubmit={handleSubmit} />
+        <ContentInput onSubmit={handleSubmit} />
         <ResponseBox response={response} />
         <p className="footer-text">
           Developed by: 

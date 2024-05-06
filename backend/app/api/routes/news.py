@@ -8,9 +8,20 @@ from schemas.news import NewsBase, NewsBody
 
 router = APIRouter()
 
+
 @router.post("/validate")
 def verify_news(body: NewsBody):
     # call to the model  
 
     response = generate_response(body.title, body.content)
     return response
+
+
+
+
+# @router.post("/validate")
+# def verify_news(body: NewsBody):
+#     # call to the model  
+
+#     response = ("backend title: ",body.title, "backend content:",body.content)
+#     return response
