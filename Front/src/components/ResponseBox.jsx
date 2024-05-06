@@ -8,7 +8,7 @@ const ResponseBox = ({ response }) => {
   return (
     <TextareaAutosize
       id="standard-multiline-flexible"
-      label=""
+      label="Response"
       multiline
       maxRows={10}
       minRows={5}
