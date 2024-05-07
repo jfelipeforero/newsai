@@ -5,6 +5,10 @@ const ResponseBox = ({ response }) => {
   const formatText = (response) => {
     const { veridic, subjectivity, polarity, related_news } = response;
 
+    // Limitar subjectivity y polarity a dos decimales
+    const formattedSubjectivity = subjectivity ? subjectivity.toFixed(2) : '';
+    const formattedPolarity = polarity ? polarity.toFixed(2) : '';
+
     // Verifica si related_news está definido antes de acceder a la propiedad data
     const formattedNews = related_news ? related_news.data.split('\n\n').map((news) => {
       const lines = news.split('\n');
@@ -18,7 +22,7 @@ const ResponseBox = ({ response }) => {
     }).join('\n\n') : '';
 
     // Construye el texto completo con la veracidad, subjectivity, polarity y las noticias formateadas
-    return `Veridic: ${veridic}\n\nSubjectivity: ${subjectivity}\n\nPolarity: ${polarity}\n\n${formattedNews}`;
+    return `Veridic: ${veridic}\n\nSubjectivity: ${formattedSubjectivity}\n\nPolarity: ${formattedPolarity}\n\n${formattedNews}`;
   };
 
   const formattedResponse = formatText(response);
