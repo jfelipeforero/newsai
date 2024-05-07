@@ -50,4 +50,29 @@ body {
   overflow: hidden; 
 }
 
+@media (max-width: 670px) {
+  .content {
+    padding: 10px;
+    border-radius: 10px;
+    width: calc(100% - 40px); /* 20px de padding (10px en cada lado) */
+    margin: 20px; /* Deja un espacio de 20px entre el borde de la página y el contenido */
+    border: 1px solid #333; /* Agrega un borde para mejorar la visualización */
+  }
 
+  /* Estilos para ContentInput */
+  #title,
+  #standard-multiline-flexible {
+    width: calc(100% - 20px); /* 10px de padding en cada lado */
+    margin-bottom: 10px;
+  }
+
+  button[type="submit"] {
+    width: calc(100% - 20px);
+    margin-top: 10px; /* Añade un espacio entre el botón y los campos de entrada */
+  }
+
+  /* Estilos para ResponseBox */
+  textarea {
+    width: calc(100% - 20px); /* 10px de padding en cada lado */
+  }
+}

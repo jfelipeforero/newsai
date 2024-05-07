@@ -27,7 +27,8 @@ const TextareaAutosize = styled(BaseTextareaAutosize)(
   ({ theme }) => `
   box-sizing: border-box;
   width: 100%; /* Ajusta el ancho al 100% del contenedor */
-  height: 300px; /* Ajusta la altura a 300px */
+  max-width: 100%; /* Limita el ancho máximo al 100% del contenedor */
+  height: 300px; /* Altura fija */
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
@@ -37,7 +38,7 @@ const TextareaAutosize = styled(BaseTextareaAutosize)(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: #EADBC8;
   border: 1px solid grey;
-  overflow-y: auto; /* Habilita la barra de desplazamiento vertical */
+  overflow-y: auto;
 
   /* Personaliza la apariencia de la barra de desplazamiento */
   &::-webkit-scrollbar {
