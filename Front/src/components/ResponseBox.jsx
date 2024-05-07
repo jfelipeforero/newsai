@@ -18,7 +18,7 @@ const ResponseBox = ({ response }) => {
     }).join('\n\n') : '';
 
     // Construye el texto completo con la veracidad y las noticias formateadas
-    return `Veridict: ${veridic}\n\n${formattedNews}`;
+    return `Veridic: ${veridic}\n\n${formattedNews}`;
   };
 
   const formattedResponse = formatText(response);
