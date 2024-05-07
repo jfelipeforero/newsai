@@ -1,9 +1,27 @@
 import React from 'react';
 import TextareaAutosize from '../text_area_styles/TextAreaAutosize';
 
-
 const ResponseBox = ({ response }) => {
-  const formattedResponse = JSON.stringify(response, null, 2);
+  const formatText = (response) => {
+    const { veridic, related_news } = response;
+
+    // Verifica si related_news está definido antes de acceder a la propiedad data
+    const formattedNews = related_news ? related_news.data.split('\n\n').map((news) => {
+      const lines = news.split('\n');
+      // Formato de Markdown para cada noticia
+      const formattedNews = lines.map((line, index) => {
+        // Reemplaza cualquier asterisco con un espacio en blanco
+        const cleanedLine = line.replace(/[*>]/g, '');
+        return cleanedLine;
+      }).join('\n');
+      return formattedNews;
+    }).join('\n\n') : '';
+
+    // Construye el texto completo con la veracidad y las noticias formateadas
+    return `Veridict: ${veridic}\n\n${formattedNews}`;
+  };
+
+  const formattedResponse = formatText(response);
 
   return (
     <TextareaAutosize
