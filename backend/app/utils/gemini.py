@@ -10,7 +10,7 @@ from IPython.display import Markdown
 
 def to_markdown(text):
     text = text.replace("•", "  *")
-    return Markdown(textwrap.indent(text, "> ", predicate=lambda _: True))
+    return Markdown(textwrap.indent(text, "", predicate=lambda _: True))
 
 
 genai.configure(api_key=settings.google_api_key)
@@ -18,17 +18,14 @@ genai.configure(api_key=settings.google_api_key)
 model = genai.GenerativeModel("gemini-pro")
 
 
-def generate_response(title: str, content: str):
-    prompt_template = f"""Provided with different reliable newspapers return 2 
-    recent news related with the following news including source:
-    title: {title}
-    content: {content}
+def generate_response(title: str):
+    prompt_template = f"""Given the following title, return the 2 most important 2 
+    keywords in the title with the following format: keyword1, keyword2:
+    title: {title} 
     """
 
     response = model.generate_content(prompt_template)
-
-    print(response)
-
     response = to_markdown(response.text)
+    print(response)
 
     return response

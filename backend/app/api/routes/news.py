@@ -1,7 +1,10 @@
 from typing import Any
 
 import requests
+from newsapi import NewsApiClient
 from fastapi import APIRouter
+from datetime import datetime
+from datetime import timedelta
 
 from core.config import settings
 from schemas.news import NewsBody
@@ -20,10 +23,13 @@ def verify_news(body: NewsBody):
     Returns:
         dict: Veracity result and related news.
     """
+
+    content = " ".join(body.content.splitlines())
+
     # Send request to model for prediction
 
     payload={
-        "body":body.content
+        "body":content
     }
 
     model_response = requests.post(settings.lambda_url, json=payload)
@@ -34,13 +40,24 @@ def verify_news(body: NewsBody):
     
     
     sentiment_analysis = requests.post(settings.sentiment_analysis_lambda_url, json=payload)
+
+    current_dateTime = datetime.now()
+    week_before = datetime.today() - timedelta(days=7)
+    str_week_before = week_before.strftime("%Y-%m-%d")
     
     # Extract subjectivity and polarity from model response
     subjectivity = sentiment_analysis.json()["subjectivity"]
     polarity = sentiment_analysis.json()["polarity"]
     # Generate response for related news
-    related_news = generate_response(body.title, body.content)
+    keywords = generate_response(body.title) 
+    newsapi = NewsApiClient(api_key=settings.news_api_key)  
+    all_articles = newsapi.get_everything(q=keywords.data,
+                                      from_param=str_week_before,
+                                      language='en',
+                                      sort_by='relevancy')
 
+
+                               
     #print("PPP:",predicted_label,type(predicted_label))
     # Check if predicted label is below threshold
     if predicted_label < 0.80:
@@ -49,7 +66,7 @@ def verify_news(body: NewsBody):
             "veridic": "False",
             "subjectivity": subjectivity,
             "polarity": polarity,
-            "related_news": related_news,
+            "related_news": all_articles,
         }
     else:
         # If predicted label is above threshold, mark news as True
@@ -57,5 +74,5 @@ def verify_news(body: NewsBody):
             "veridic": "True",
             "subjectivity": subjectivity,
             "polarity": polarity,
-            "related_news": related_news,
+            "related_news": all_articles,
         }
