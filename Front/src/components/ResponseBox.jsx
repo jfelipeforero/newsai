@@ -3,7 +3,7 @@ import TextareaAutosize from '../text_area_styles/TextAreaAutosize';
 
 const ResponseBox = ({ response }) => {
   const formatText = (response) => {
-    const { veridic, related_news } = response;
+    const { veridic, subjectivity, polarity, related_news } = response;
 
     // Verifica si related_news está definido antes de acceder a la propiedad data
     const formattedNews = related_news ? related_news.data.split('\n\n').map((news) => {
@@ -17,8 +17,8 @@ const ResponseBox = ({ response }) => {
       return formattedNews;
     }).join('\n\n') : '';
 
-    // Construye el texto completo con la veracidad y las noticias formateadas
-    return `Veridic: ${veridic}\n\n${formattedNews}`;
+    // Construye el texto completo con la veracidad, subjectivity, polarity y las noticias formateadas
+    return `Veridic: ${veridic}\n\nSubjectivity: ${subjectivity}\n\nPolarity: ${polarity}\n\n${formattedNews}`;
   };
 
   const formattedResponse = formatText(response);
