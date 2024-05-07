@@ -37,7 +37,6 @@ protobuf==4.25.3
 pyasn1==0.6.0
 pyasn1_modules==0.4.0
 pydantic==2.7.1
-pydantic-settings==2.2.1
 pydantic_core==2.18.2
 Pygments==2.18.0
 pyparsing==3.1.2
@@ -45,7 +44,6 @@ pytest==8.2.0
 python-dotenv==1.0.1
 python-multipart==0.0.9
 PyYAML==6.0.1
-requests==2.31.0
 rich==13.7.1
 rsa==4.9
 shellingham==1.5.4
@@ -63,6 +61,6 @@ google-generativeai
 IPython
 watchfiles==0.21.0
 websockets==12.0
-requests==2.26.0
-pydantic-settings==2.1.0
+requests
+pydantic-settings
 
