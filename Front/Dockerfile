@@ -13,6 +13,10 @@ RUN npm install
 # Copiar el código fuente de la aplicación
 COPY . .
 
+ARG REACT_APP_BASE_URL_BACKEND
+
+ENV REACT_APP_BASE_URL_BACKEND $REACT_APP_BASE_URL_BACKEND
+
 # Compilar la aplicación (si es necesario)
 RUN npm run build
 

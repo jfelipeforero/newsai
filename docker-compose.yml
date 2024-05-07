@@ -5,6 +5,12 @@ services:
     build:
       context: ./Front
       dockerfile: Dockerfile
+      args:
+        REACT_APP_BASE_URL_BACKEND: ${REACT_APP_BASE_URL_BACKEND}
+    env_file:
+      - .env
+    environment:
+      REACT_APP_BASE_URL_BACKEND: ${REACT_APP_BASE_URL_BACKEND}
     ports:
       - "5173:80"
     depends_on:
@@ -14,5 +20,12 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      google_api_key: ${google_api_key}
+      lambda_url: ${lambda_url}
+      sentiment_analysis_lambda_url: ${sentiment_analysis_lambda_url}
     ports:
       - "8000:8000"
+    
