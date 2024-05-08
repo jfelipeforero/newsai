@@ -16,9 +16,12 @@ const ContentInput = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ title, content }); // Envía el título y el contenido al backend al momento de enviar el formulario
-    setTitle(''); // Limpia el estado del título después de enviar el formulario
-    setContent(''); // Limpia el estado del contenido después de enviar el formulario
+    onSubmit({ title, content });
+  };
+
+  const handleClear = () => {
+    setTitle('');
+    setContent('');
   };
 
   return (
@@ -48,6 +51,12 @@ const ContentInput = ({ onSubmit }) => {
         type="submit"
       >
         Submit
+      </Button>
+      <Button
+        variant="text"
+        onClick={handleClear}
+      >
+        Clear
       </Button>
     </form>
   );
