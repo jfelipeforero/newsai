@@ -31,7 +31,7 @@ const ContentInput = ({ onSubmit }) => {
         label="Title"
         value={title}
         onChange={handleTitleChange}
-        placeholder='Enter the title...'
+        placeholder='Enter the title here...'
         style={{ width: '600px', maxHeight: '50px', overflowY: 'auto' }}
       />
       <br/>
@@ -42,7 +42,7 @@ const ContentInput = ({ onSubmit }) => {
         minRows={5}
         value={content}
         onChange={handleChange}
-        placeholder='Put your notice here...'
+        placeholder='Put your news content here...'
         style={{ width: '600px', maxHeight: '200px', overflowY: 'auto' }}
       />
       <br/>

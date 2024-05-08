@@ -3,6 +3,10 @@ import TextareaAutosize from '../text_area_styles/TextAreaAutosize';
 
 const ResponseBox = ({ response }) => {
   const formatText = (response) => {
+    if (!response) {
+      return "";
+    }
+
     const { veridic, subjectivity, polarity, related_news } = response;
 
     // Limitar subjectivity y polarity a dos decimales
@@ -20,7 +24,7 @@ const ResponseBox = ({ response }) => {
     }
 
     // Construye el texto completo con la veracidad, subjectivity, polarity y las noticias formateadas
-    return `Your new has a probably to be: ${veridic}
+    return `Your new has a high probability to be: ${veridic}
     \nSubjectivity, Subjectivity scores text for opinion versus fact, with higher scores indicating more personal opinion: ${formattedSubjectivity} (from 0 to 1)
     \nPolarity, Polarity is measured using sentiment analysis techniques, assigning numeric values to represent the direction and strength of sentiment in text: ${formattedPolarity} (from -1 to 1)\n\nRelated News:\n\n${formattedNews}`;
   };
@@ -34,9 +38,10 @@ const ResponseBox = ({ response }) => {
       multiline
       maxRows={10}
       minRows={5}
+      placeholder='waiting for response...'
       variant="outlined"
       value={formattedResponse}
-      InputProps={{ readOnly: true }}
+      InputProps={{ readOnly: true }} // Texto gris como placeholder
       style={{ width: '600px', maxHeight: '200px', overflowY: 'auto' }}
     />
   );
